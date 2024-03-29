@@ -42,7 +42,7 @@ public class MatchTest {
     public void whenAwayTeamNameSet_thenCanGetThatAwayTeamName()
     {
         Match match = new Match();
-        String teamName = "HomeTeam";
+        String teamName = "AwayTeam";
         match.setAwayTeam(teamName);
         assertEquals(teamName, match.getAwayTeam());
     }
