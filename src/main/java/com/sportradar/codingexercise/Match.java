@@ -28,4 +28,8 @@ public class Match {
     public String getAwayTeam() {
         return awayTeam;
     }
+
+    public int[] getScore() {
+        return new int[]{0, 0};
+    }
 }

@@ -40,4 +40,13 @@ public class MatchTest {
         assertEquals(homeTeamName, match.getHomeTeam());
         assertEquals(awayTeamName, match.getAwayTeam());
     }
+
+    @Test
+    public void whenNewMatchCreated_thenInitialScoreShallBeZeroToZero() {
+        Match match = new Match();
+        int[] score = match.getScore();
+        assertEquals(2, score.length);
+        assertEquals(0, score[0]);
+        assertEquals(0, score[1]);
+    }
 }
