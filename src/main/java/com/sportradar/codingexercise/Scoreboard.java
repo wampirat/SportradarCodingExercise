@@ -55,4 +55,8 @@ public class Scoreboard {
         }
         return result.toString();
     }
+
+    public String getSummary() {
+        return toString();
+    }
 }

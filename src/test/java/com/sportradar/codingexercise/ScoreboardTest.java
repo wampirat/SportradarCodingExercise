@@ -260,6 +260,6 @@ public class ScoreboardTest {
                 Germany 2 - France 2
                 """;
 
-        assertEquals(expectedString, scoreboard.toString());
+        assertEquals(expectedString, scoreboard.getSummary());
     }
 }
