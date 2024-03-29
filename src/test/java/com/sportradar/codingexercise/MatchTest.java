@@ -28,4 +28,22 @@ public class MatchTest {
         Match match = new Match();
         assertEquals("", match.getAwayTeam());
     }
+
+    @Test
+    public void whenHomeTeamNameSet_thenCanGetThatHomeTeamName()
+    {
+        Match match = new Match();
+        String teamName = "HomeTeam";
+        match.setHomeTeam(teamName);
+        assertEquals(teamName, match.getHomeTeam());
+    }
+
+    @Test
+    public void whenAwayTeamNameSet_thenCanGetThatAwayTeamName()
+    {
+        Match match = new Match();
+        String teamName = "HomeTeam";
+        match.setAwayTeam(teamName);
+        assertEquals(teamName, match.getAwayTeam());
+    }
 }
