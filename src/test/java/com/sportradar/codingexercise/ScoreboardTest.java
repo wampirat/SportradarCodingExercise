@@ -160,4 +160,67 @@ public class ScoreboardTest {
 
         assertEquals(STR."\{thirdMatch.toString()}\n\{match.toString()}\n\{secondMatch.toString()}\n", scoreboard.toString());
     }
+
+    @Test
+    void testToString_whenItsCalledWhileHavingMultipleMatches_thenItShallReturnResultOfEachMatchToStringOrderedByTheMostRecentlyStartedMatchIfTopTotalScoreTied() {
+        Scoreboard scoreboard = new Scoreboard();
+        String homeTeamName = "HomeTeam";
+        String awayTeamName = "AwayTeam";
+        String homeTeamNameSecondMatch = "HomeTeamSecondMatch";
+        String awayTeamNameSecondMatch = "AwayTeamSecondMatch";
+        String homeTeamNameThirdMatch = "HomeTeamThirdMatch";
+        String awayTeamNameThirdMatch = "AwayTeamThirdMatch";
+        int homeTeamScore = 44;
+        int awayTeamScore = 66;
+        int homeTeamScoreSecondMatch = 25;
+        int awayTeamScoreSecondMatch = 25;
+        int homeTeamScoreThirdMatch = 10;
+        int awayTeamScoreThirdMatch = 40;
+
+        scoreboard.startMatch(homeTeamName, awayTeamName);
+        scoreboard.updateScore(homeTeamName, awayTeamName, homeTeamScore, awayTeamScore);
+
+        scoreboard.startMatch(homeTeamNameSecondMatch, awayTeamNameSecondMatch);
+        scoreboard.updateScore(homeTeamNameSecondMatch, awayTeamNameSecondMatch, homeTeamScoreSecondMatch, awayTeamScoreSecondMatch);
+
+        scoreboard.startMatch(homeTeamNameThirdMatch, awayTeamNameThirdMatch);
+        scoreboard.updateScore(homeTeamNameThirdMatch, awayTeamNameThirdMatch, homeTeamScoreThirdMatch, awayTeamScoreThirdMatch);
+
+        Match match = new Match(homeTeamName, awayTeamName);
+        match.setScore(homeTeamScore, awayTeamScore);
+
+        Match secondMatch = new Match(homeTeamNameSecondMatch, awayTeamNameSecondMatch);
+        secondMatch.setScore(homeTeamScoreSecondMatch, awayTeamScoreSecondMatch);
+
+        Match thirdMatch = new Match(homeTeamNameThirdMatch, awayTeamNameThirdMatch);
+        thirdMatch.setScore(homeTeamScoreThirdMatch, awayTeamScoreThirdMatch);
+
+        assertEquals(STR."\{match.toString()}\n\{thirdMatch.toString()}\n\{secondMatch.toString()}\n", scoreboard.toString());
+    }
+
+    @Test
+    void testToString_customerAcceptanceTest() {
+        Scoreboard scoreboard = new Scoreboard();
+        String[] homeTeamNames = {"Mexico", "Spain", "Germany", "Uruguay", "Argentina"};
+        String[] awayTeamNames = {"Canada", "Brazil", "France", "Italy", "Australia"};
+
+        int[] homeTeamScores = {0, 10, 2, 6, 3};
+        int[] awayTeamScores = {5, 2, 2, 6, 1};
+
+        for (int i = 0; i < homeTeamNames.length; i++)
+        {
+            scoreboard.startMatch(homeTeamNames[i], awayTeamNames[i]);
+            scoreboard.updateScore(homeTeamNames[i], awayTeamNames[i], homeTeamScores[i], awayTeamScores[i]);
+        }
+
+        String expectedString = """
+                Uruguay 6 - Italy 6
+                Spain 10 - Brazil 2
+                Mexico 0 - Canada 5
+                Argentina 3 - Australia 1
+                Germany 2 - France 2
+                """;
+
+        assertEquals(expectedString, scoreboard.toString());
+    }
 }
