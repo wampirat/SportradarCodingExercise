@@ -35,4 +35,14 @@ public class MatchTest {
         match.setAwayTeam(teamName);
         assertEquals(teamName, match.getAwayTeam());
     }
+
+    @Test
+    public void whenTeamNamesProvidedToConstructor_thenCanGetThoseTeamNames()
+    {
+        String homeTeamName = "HomeTeam";
+        String awayTeamName = "AwayTeam";
+        Match match = new Match(homeTeamName, awayTeamName);
+        assertEquals(homeTeamName, match.getHomeTeam());
+        assertEquals(awayTeamName, match.getAwayTeam());
+    }
 }
