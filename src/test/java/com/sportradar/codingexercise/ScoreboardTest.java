@@ -55,4 +55,21 @@ public class ScoreboardTest {
         scoreboard.finishMatch(homeTeamName, awayTeamName);
         assertFalse(scoreboard.matchInProgress(homeTeamName, awayTeamName));
     }
+    @Test void whenGivenTeamNamesThatArentInSameMatch_thenGetScoreShallReturnEmptyArray() {
+        Scoreboard scoreboard = new Scoreboard();
+        String homeTeamName = "HomeTeam";
+        String awayTeamName = "AwayTeam";
+        int[] score = scoreboard.getScore(homeTeamName, awayTeamName);
+        assertEquals(0, score.length);
+    }
+    @Test
+    void whenGivenTeamNamesThatAreInSameMatch_thenGetScoreShallReturnCurrentScoreOfThatMatch() {
+        Scoreboard scoreboard = new Scoreboard();
+        String homeTeamName = "HomeTeam";
+        String awayTeamName = "AwayTeam";
+        scoreboard.startMatch(homeTeamName, awayTeamName);
+        int[] score = scoreboard.getScore(homeTeamName, awayTeamName);
+        assertEquals(0, score[0]);
+        assertEquals(0, score[1]);
+    }
 }
