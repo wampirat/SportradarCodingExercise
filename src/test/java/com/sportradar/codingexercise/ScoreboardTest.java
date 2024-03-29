@@ -5,15 +5,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ScoreboardTest {
-
-    @Test
-    public void canStartAMatch() {
-        Scoreboard scoreboard = new Scoreboard();
-        String homeTeamName = "HomeTeam";
-        String awayTeamName = "AwayTeam";
-        scoreboard.startMatch(homeTeamName, awayTeamName);
-    }
-
     @Test
     public void whenGivenTeamNamesThatArentInScoreBoard_thenMatchInProgressShallReturnFalse() {
         Scoreboard scoreboard = new Scoreboard();
