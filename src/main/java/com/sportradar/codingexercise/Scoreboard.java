@@ -10,10 +10,6 @@ public class Scoreboard {
         return STR."\{homeTeamName}_\{awayTeamName}";
     }
 
-    public void Add(Match match){
-
-    }
-
     public void startMatch(String homeTeamName, String awayTeamName) {
         matches.put(calculateMatchKey(homeTeamName, awayTeamName), new Match(homeTeamName, awayTeamName));
     }

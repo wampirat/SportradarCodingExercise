@@ -5,12 +5,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ScoreboardTest {
-    @Test
-    public void canAddMatchToScoreboard() {
-        Scoreboard scoreboard = new Scoreboard();
-        Match match = new Match();
-        scoreboard.Add(match);
-    }
 
     @Test
     public void canStartAMatch() {
