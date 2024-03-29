@@ -49,4 +49,15 @@ public class MatchTest {
         assertEquals(0, score[0]);
         assertEquals(0, score[1]);
     }
+
+    @Test
+    public void whenMatchScoreUpdated_thenCanGetNewScore() {
+        Match match = new Match();
+        int homeTeamScore = 3;
+        int awayTeamScore = 14;
+        match.setScore(homeTeamScore, awayTeamScore);
+        int[] score = match.getScore();
+        assertEquals(homeTeamScore, score[0]);
+        assertEquals(awayTeamScore, score[1]);
+    }
 }

@@ -3,6 +3,7 @@ package com.sportradar.codingexercise;
 public class Match {
     private String homeTeam = "";
     private String awayTeam = "";
+    private final int[] score = {0, 0};
 
     public Match() {
 
@@ -30,6 +31,11 @@ public class Match {
     }
 
     public int[] getScore() {
-        return new int[]{0, 0};
+        return score;
+    }
+
+    public void setScore(int homeTeamScore, int awayTeamScore) {
+        score[0] = homeTeamScore;
+        score[1] = awayTeamScore;
     }
 }
