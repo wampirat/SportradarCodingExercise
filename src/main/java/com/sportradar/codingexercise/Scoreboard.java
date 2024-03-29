@@ -17,4 +17,8 @@ public class Scoreboard {
     public boolean matchInProgress(String homeTeamName, String awayTeamName) {
         return matches.containsKey(calculateMatchKey(homeTeamName, awayTeamName));
     }
+
+    public void finishMatch(String homeTeamName, String awayTeamName) {
+        matches.remove(calculateMatchKey(homeTeamName, awayTeamName));
+    }
 }

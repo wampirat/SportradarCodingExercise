@@ -45,4 +45,14 @@ public class ScoreboardTest {
         scoreboard.startMatch(homeTeamName, awayTeamName);
         assertTrue(scoreboard.matchInProgress(homeTeamName, awayTeamName));
     }
+
+    @Test void whenGivenTeamNamesThatAreInSameMatch_andFinishedMatch_thenMatchInProgressShallReturnFalse() {
+        Scoreboard scoreboard = new Scoreboard();
+        String homeTeamName = "HomeTeam";
+        String awayTeamName = "AwayTeam";
+        scoreboard.startMatch(homeTeamName, awayTeamName);
+        assertTrue(scoreboard.matchInProgress(homeTeamName, awayTeamName));
+        scoreboard.finishMatch(homeTeamName, awayTeamName);
+        assertFalse(scoreboard.matchInProgress(homeTeamName, awayTeamName));
+    }
 }
