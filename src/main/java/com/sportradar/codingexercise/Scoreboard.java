@@ -3,6 +3,7 @@ import java.util.*;
 
 public class Scoreboard {
     Map<String, Match> matches = new HashMap<>();
+    List<String> orderOfMatches = new ArrayList<>();
 
     private String calculateMatchKey(String homeTeamName, String awayTeamName) {
         return STR."\{homeTeamName}_\{awayTeamName}";
@@ -10,7 +11,9 @@ public class Scoreboard {
 
     public void startMatch(String homeTeamName, String awayTeamName) {
         if (!matchInProgress(homeTeamName, awayTeamName)) {
-            matches.put(calculateMatchKey(homeTeamName, awayTeamName), new Match(homeTeamName, awayTeamName));
+            String matchKey = calculateMatchKey(homeTeamName, awayTeamName);
+            matches.put(matchKey, new Match(homeTeamName, awayTeamName));
+            orderOfMatches.add(matchKey);
         }
     }
 
@@ -37,11 +40,14 @@ public class Scoreboard {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        List<Match> sortedMatches = new ArrayList<>(matches.values());
-        sortedMatches.sort((a, b) -> Integer.compare(Arrays.stream(b.getScore()).sum(), Arrays.stream(a.getScore()).sum()));
+        List<Map.Entry<String, Match>> sortedMatches = new ArrayList<>(matches.entrySet());
+        sortedMatches.sort((a, b) -> {
+            int compareScore = Integer.compare(Arrays.stream(b.getValue().getScore()).sum(), Arrays.stream(a.getValue().getScore()).sum());
+            return (compareScore != 0) ? compareScore : Integer.compare(orderOfMatches.indexOf(b.getKey()), orderOfMatches.indexOf(a.getKey()));
+        });
 
-        for (Match match : sortedMatches) {
-            result.append(match.toString()).append('\n');
+        for (Map.Entry<String, Match> entry : sortedMatches) {
+            result.append(entry.getValue().toString()).append('\n');
         }
         return result.toString();
     }
