@@ -8,4 +8,12 @@ public class Match {
     public void setAwayTeam(String teamName) {
 
     }
+
+    public String getHomeTeam() {
+        return "";
+    }
+
+    public String getAwayTeam() {
+        return "";
+    }
 }

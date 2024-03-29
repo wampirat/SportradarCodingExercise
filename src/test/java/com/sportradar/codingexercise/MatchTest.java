@@ -1,6 +1,7 @@
 package com.sportradar.codingexercise;
 
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MatchTest {
     @Test
@@ -13,5 +14,18 @@ public class MatchTest {
     public void matchCanHaveAnAwayTeam() {
         Match match = new Match();
         match.setAwayTeam("AwayTeam");
+    }
+    @Test
+    public void whenHomeTeamNameNotSet_thenEmptyByDefault()
+    {
+        Match match = new Match();
+        assertEquals("", match.getHomeTeam());
+    }
+
+    @Test
+    public void whenAwayTeamNameNotSet_thenEmptyByDefault()
+    {
+        Match match = new Match();
+        assertEquals("", match.getAwayTeam());
     }
 }
