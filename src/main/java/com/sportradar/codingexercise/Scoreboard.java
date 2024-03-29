@@ -4,8 +4,7 @@ import java.util.*;
 public class Scoreboard {
     Map<String, Match> matches = new HashMap<>();
 
-    private String calculateMatchKey(String homeTeamName, String awayTeamName)
-    {
+    private String calculateMatchKey(String homeTeamName, String awayTeamName) {
         return STR."\{homeTeamName}_\{awayTeamName}";
     }
 
