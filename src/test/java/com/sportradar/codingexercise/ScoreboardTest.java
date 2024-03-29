@@ -72,4 +72,20 @@ public class ScoreboardTest {
         assertEquals(0, score[0]);
         assertEquals(0, score[1]);
     }
+
+    @Test
+    void whenGivenTeamNamesThatAreInSameMatch_andScoreUpdated_thenGetScoreShallReturnCurrentScoreOfThatMatch() {
+        Scoreboard scoreboard = new Scoreboard();
+        String homeTeamName = "HomeTeam";
+        String awayTeamName = "AwayTeam";
+        scoreboard.startMatch(homeTeamName, awayTeamName);
+
+        int homeTeamScore = 54;
+        int awayTeamScore = 13;
+        scoreboard.updateScore(homeTeamName, awayTeamName, homeTeamScore, awayTeamScore);
+
+        int[] score = scoreboard.getScore(homeTeamName, awayTeamName);
+        assertEquals(homeTeamScore, score[0]);
+        assertEquals(awayTeamScore, score[1]);
+    }
 }

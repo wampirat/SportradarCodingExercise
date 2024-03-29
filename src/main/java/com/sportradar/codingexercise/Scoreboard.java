@@ -26,4 +26,11 @@ public class Scoreboard {
         String matchKey = calculateMatchKey(homeTeamName, awayTeamName);
         return matches.containsKey(matchKey) ? matches.get(matchKey).getScore() : new int[] {};
     }
+
+    public void updateScore(String homeTeamName, String awayTeamName, int homeTeamScore, int awayTeamScore) {
+        String matchKey = calculateMatchKey(homeTeamName, awayTeamName);
+        if (matches.containsKey(matchKey)) {
+            matches.get(matchKey).setScore(homeTeamScore, awayTeamScore);
+        }
+    }
 }
