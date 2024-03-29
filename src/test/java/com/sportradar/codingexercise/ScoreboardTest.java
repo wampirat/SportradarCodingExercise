@@ -81,6 +81,28 @@ public class ScoreboardTest {
     }
 
     @Test
+    void whenGivenTeamNamesThatAreInSameMatch_thenStartMatchShallNotResetTheMatch() {
+        Scoreboard scoreboard = new Scoreboard();
+        String homeTeamName = "HomeTeam";
+        String awayTeamName = "AwayTeam";
+        scoreboard.startMatch(homeTeamName, awayTeamName);
+
+        int homeTeamScore = 54;
+        int awayTeamScore = 13;
+        scoreboard.updateScore(homeTeamName, awayTeamName, homeTeamScore, awayTeamScore);
+
+        int[] score = scoreboard.getScore(homeTeamName, awayTeamName);
+        assertEquals(homeTeamScore, score[0]);
+        assertEquals(awayTeamScore, score[1]);
+
+        scoreboard.startMatch(homeTeamName, awayTeamName);
+        int[] scoreAfterNextStartMatch = scoreboard.getScore(homeTeamName, awayTeamName);
+        assertEquals(homeTeamScore, scoreAfterNextStartMatch[0]);
+        assertEquals(awayTeamScore, scoreAfterNextStartMatch[1]);
+    }
+
+
+    @Test
     void testToString_whenItsCalledOnEmptyScoreboard_thenItShallReturnNothing() {
         Scoreboard scoreboard = new Scoreboard();
         assertEquals("", scoreboard.toString());

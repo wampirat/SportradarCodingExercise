@@ -10,7 +10,9 @@ public class Scoreboard {
     }
 
     public void startMatch(String homeTeamName, String awayTeamName) {
-        matches.put(calculateMatchKey(homeTeamName, awayTeamName), new Match(homeTeamName, awayTeamName));
+        if (!matchInProgress(homeTeamName, awayTeamName)) {
+            matches.put(calculateMatchKey(homeTeamName, awayTeamName), new Match(homeTeamName, awayTeamName));
+        }
     }
 
     public boolean matchInProgress(String homeTeamName, String awayTeamName) {
