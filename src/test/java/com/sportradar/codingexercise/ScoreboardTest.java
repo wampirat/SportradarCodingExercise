@@ -9,4 +9,12 @@ public class ScoreboardTest {
         Match match = new Match();
         scoreboard.Add(match);
     }
+
+    @Test
+    public void canStartAMatch() {
+        Scoreboard scoreboard = new Scoreboard();
+        String homeTeamName = "HomeTeam";
+        String awayTeamName = "AwayTeam";
+        scoreboard.startMatch(homeTeamName, awayTeamName);
+    }
 }
