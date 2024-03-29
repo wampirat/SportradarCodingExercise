@@ -22,7 +22,11 @@ public class Scoreboard {
     }
 
     public void finishMatch(String homeTeamName, String awayTeamName) {
-        matches.remove(calculateMatchKey(homeTeamName, awayTeamName));
+        if (matchInProgress(homeTeamName, awayTeamName)) {
+            String matchKey = calculateMatchKey(homeTeamName, awayTeamName);
+            matches.remove(matchKey);
+            orderOfMatches.remove(matchKey);
+        }
     }
 
     public int[] getScore(String homeTeamName, String awayTeamName) {
