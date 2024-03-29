@@ -5,17 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MatchTest {
     @Test
-    public void matchCanHaveAHomeTeam() {
-        Match match = new Match();
-        match.setHomeTeam("HomeTeam");
-    }
-
-    @Test
-    public void matchCanHaveAnAwayTeam() {
-        Match match = new Match();
-        match.setAwayTeam("AwayTeam");
-    }
-    @Test
     public void whenHomeTeamNameNotSet_thenEmptyByDefault()
     {
         Match match = new Match();
