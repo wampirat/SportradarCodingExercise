@@ -1,6 +1,5 @@
 package com.sportradar.codingexercise;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Scoreboard {
     Map<String, Match> matches = new HashMap<>();
@@ -32,5 +31,17 @@ public class Scoreboard {
         if (matches.containsKey(matchKey)) {
             matches.get(matchKey).setScore(homeTeamScore, awayTeamScore);
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        List<Match> sortedMatches = new ArrayList<>(matches.values());
+        sortedMatches.sort((a, b) -> Integer.compare(Arrays.stream(b.getScore()).sum(), Arrays.stream(a.getScore()).sum()));
+
+        for (Match match : sortedMatches) {
+            result.append(match.toString()).append('\n');
+        }
+        return result.toString();
     }
 }
