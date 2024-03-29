@@ -60,4 +60,43 @@ public class MatchTest {
         assertEquals(homeTeamScore, score[0]);
         assertEquals(awayTeamScore, score[1]);
     }
+
+    @Test
+    public void testToString_whenItsCalledOnDefaultMatch() {
+        Match match = new Match();
+        assertEquals("0 - 0", match.toString());
+    }
+
+    @Test
+    public void testToString_whenItsCalledWithOnlyHomeTeamNamed_andWithInitialScore() {
+        String homeTeamName = "HomeTeam";
+        Match match = new Match(homeTeamName, "");
+        assertEquals(STR."\{homeTeamName} 0 - 0", match.toString());
+    }
+
+    @Test
+    public void testToString_whenItsCalledWithOnlyAwayTeamNamed_andWithInitialScore() {
+        String awayTeamName = "AwayTeam";
+        Match match = new Match("", awayTeamName);
+        assertEquals(STR."0 - \{awayTeamName} 0", match.toString());
+    }
+
+    @Test
+    public void testToString_whenItsCalledWithBothTeamsNamed_andWithInitialScore() {
+        String homeTeamName = "HomeTeam";
+        String awayTeamName = "AwayTeam";
+        Match match = new Match(homeTeamName, awayTeamName);
+        assertEquals(STR."\{homeTeamName} 0 - \{awayTeamName} 0", match.toString());
+    }
+
+    @Test
+    public void testToString_whenItsCalledWithBothTeamsNamed_andWithUpdatedScore() {
+        String homeTeamName = "HomeTeam";
+        String awayTeamName = "AwayTeam";
+        Match bothTeamsNamed = new Match(homeTeamName, awayTeamName);
+        int homeTeamScore = 54;
+        int awayTeamScore = 213;
+        bothTeamsNamed.setScore(homeTeamScore, awayTeamScore);
+        assertEquals(STR."\{homeTeamName} \{homeTeamScore} - \{awayTeamName} \{awayTeamScore}", bothTeamsNamed.toString());
+    }
 }

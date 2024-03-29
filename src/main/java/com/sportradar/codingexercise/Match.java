@@ -38,4 +38,9 @@ public class Match {
         score[0] = homeTeamScore;
         score[1] = awayTeamScore;
     }
+
+    @Override
+    public String toString() {
+        return STR."\{homeTeam}\{homeTeam.isEmpty() ? "" : " "}\{score[0]} - \{awayTeam}\{awayTeam.isEmpty() ? "" : " "}\{score[1]}";
+    }
 }
